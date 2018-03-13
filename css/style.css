@@ -6,16 +6,21 @@
 }
 
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
     height: 100vh;
     display: flex;
 }
 
+pre {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
 .code {
     width: 100%;
-    overflow: hidden;
     color: rgb(187, 187, 187);
     background: rgb(40, 44, 52);
-    font-size: 16px;
     font-family: Menlo, Monaco, Consolas, "Andale Mono", "lucida console", "Courier New", monospace;
     margin-right: 10px;
 }

@@ -1,33 +1,37 @@
-let currentCssResult = ''
-let currentMdResult = ''
+function main() {
+    let currentCssResult = ''
+    let currentMdResult = ''
 
-const writeCss = (result) => {
-    let currentIndex = 0
-    const interval = setInterval(() => {
-        currentCssResult += result[currentIndex]
-        code.innerHTML = Prism.highlight(currentCssResult, Prism.languages.css)
-        code.scrollTop = code.scrollHeight
-        style.innerHTML = currentCssResult
-        currentIndex += 1
-        if (currentIndex === result.length) {
-            clearInterval(interval)
-        }
-    }, 0)
-}
+    const writeCss = (result, callback) => {
+        let currentIndex = 0
+        const interval = setInterval(() => {
+            currentCssResult += result[currentIndex]
+            code.innerHTML = Prism.highlight(currentCssResult, Prism.languages.css)
+            code.scrollTop = code.scrollHeight
+            style.innerHTML = currentCssResult
+            currentIndex += 1
+            if (currentIndex === result.length) {
+                clearInterval(interval)
+                callback()
+            }
+        }, 0)
+    }
 
-const writeMd = (result) => {
-    let currentIndex = 0
-    const interval = setInterval(() => {
-        currentMdResult += result[currentIndex]
-        paper.scrollTop = code.scrollHeight
-        currentIndex += 1
-        if (currentIndex === result.length) {
-            clearInterval(interval)
-        }
-    }, 0)
-}
+    const writeMd = (result, callback) => {
+        let currentIndex = 0
+        const interval = setInterval(() => {
+            currentMdResult += result[currentIndex]
+            paper.innerHTML = currentMdResult
+            paper.scrollTop = code.scrollHeight
+            currentIndex += 1
+            if (currentIndex === result.length) {
+                clearInterval(interval)
+                callback()
+            }
+        }, 0)
+    }
 
-const css = `/*
+    const css = `/*
 * 面试官你好，我是CC
 * 试试用不一样的方式介绍自己吧
 * 这里是我的代码板，先用它加点样式哦
@@ -72,10 +76,54 @@ body {
 */
 .paper {
     width: 50%;
+    padding: 20px;
     color: #000;
     background: #fff;
 }
 
 /* OK，可以写啦 */
 `
-writeCss(css)
+
+    const md = `# 我的简历
+    
+## 自我介绍
+
+你好，我叫CC
+XXXX年X月出生
+就读于XXXX大学，计算机专业，大三
+目前自学前端半年
+想要应聘前端实习岗位
+
+## 技能介绍
+
+- 熟悉HTML&CSS&JavaScript
+- 熟悉HTTP协议
+- 熟悉主流的前端框架
+
+## 项目介绍
+
+- XXX画板
+- XXX简历
+- XXX游戏
+
+## 联系方式
+
+- 手机：188xxxxxxxx
+- 邮箱：xxxxx@gmail.com
+- QQ：8xxxxxxxx
+`
+
+    const css2 = `
+/* 写完啦，但现在还是markdown格式，把它转成HTML吧 */
+`
+
+    writeCss(css, () => {
+        writeMd(md, () => {
+            writeCss(css2, () => {
+                paper.innerHTML = marked(currentMdResult)
+            })
+        })
+    })
+}
+
+window.onload = main
