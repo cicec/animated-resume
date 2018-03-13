@@ -1,13 +1,23 @@
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     transition: all 1s;
 }
 
+body {
+    height: 100vh;
+    display: flex;
+}
+
 .code {
+    width: 100%;
+    overflow: hidden;
     color: rgb(187, 187, 187);
     background: rgb(40, 44, 52);
     font-size: 16px;
     font-family: Menlo, Monaco, Consolas, "Andale Mono", "lucida console", "Courier New", monospace;
-    transition: transform 2s;
+    margin-right: 10px;
 }
 
 .code .token {
@@ -21,4 +31,8 @@
     to {
         box-shadow: 0 0 20px rgba(187, 187, 187, 0.4);
     }
+}
+
+.paper {
+    margin-left: 10px;
 }
