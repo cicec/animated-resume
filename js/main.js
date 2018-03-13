@@ -1,6 +1,7 @@
 function main() {
     let currentCssResult = ''
     let currentMdResult = ''
+    const time = 40
 
     const writeCss = (result, callback) => {
         let currentIndex = 0
@@ -14,7 +15,7 @@ function main() {
                 clearInterval(interval)
                 callback()
             }
-        }, 0)
+        }, time)
     }
 
     const writeMd = (result, callback) => {
@@ -28,10 +29,10 @@ function main() {
                 clearInterval(interval)
                 callback()
             }
-        }, 0)
+        }, time)
     }
 
-    const css = `/*
+    const css1 = `/*
 * 面试官你好，我是CC
 * 试试用不一样的方式介绍自己吧
 * 这里是我的代码板，先用它加点样式哦
@@ -64,35 +65,35 @@ body {
 }
 
 /*
-* 好了，开始写简历啦
+* 好了，先写这些，开始写简历吧
 * 先把代码板变窄一点
 */
 .code {
     width: 50%;
 }
+`
 
+    const css2 = `
 /*
 * 在哪写呢，要有张纸的吧
 */
 .paper {
     width: 50%;
     padding: 20px;
-    color: #000;
     background: #fff;
 }
 
-/* OK，可以写啦 */
+/* OK，可以开始写简历了 */
 `
-
     const md = `# 我的简历
     
 ## 自我介绍
 
-你好，我叫CC
-XXXX年X月出生
-就读于XXXX大学，计算机专业，大三
-目前自学前端半年
-想要应聘前端实习岗位
+你好，我叫CC。XXXX年X月出生。
+
+就读于XXXX大学，计算机专业，大三。
+
+目前自学前端半年，想要应聘前端实习岗位。
 
 ## 技能介绍
 
@@ -113,14 +114,24 @@ XXXX年X月出生
 - QQ：8xxxxxxxx
 `
 
-    const css2 = `
-/* 写完啦，但现在还是markdown格式，把它转成HTML吧 */
+    const css3 = `
+/* 写完了，但现在还是markdown格式，把它转成HTML吧 */
 `
 
-    writeCss(css, () => {
-        writeMd(md, () => {
-            writeCss(css2, () => {
-                paper.innerHTML = marked(currentMdResult)
+    const css4 = `
+/* 这就是我的简历啦，谢谢观看 */
+`
+
+    writeCss(css1, () => {
+        paper.classList.remove('hidden')
+        writeCss(css2, () => {
+            writeMd(md, () => {
+                writeCss(css3, () => {
+                    paper.classList.add('hidden')
+                    resume.classList.remove('hidden')
+                    resume.innerHTML = marked(currentMdResult)
+                    writeCss(css4, () => {})
+                })
             })
         })
     })

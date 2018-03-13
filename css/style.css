@@ -1,20 +1,21 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
     transition: all 1s;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 16px;
     height: 100vh;
     display: flex;
 }
 
 pre {
-    overflow-x: hidden;
-    overflow-y: scroll;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
+    overflow: hidden;
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none;
 }
 
 .code {
@@ -22,7 +23,7 @@ pre {
     color: rgb(187, 187, 187);
     background: rgb(40, 44, 52);
     font-family: Menlo, Monaco, Consolas, "Andale Mono", "lucida console", "Courier New", monospace;
-    margin-right: 10px;
+    margin-right: 20px;
 }
 
 .code .token {
@@ -38,6 +39,11 @@ pre {
     }
 }
 
-.paper {
-    margin-left: 10px;
+.resume {
+    width: 50%;
+    padding: 20px;
+    background: #fff;
+    /* overflow-x: hidden;
+    overflow-y: scroll; */
+    overflow: hidden;
 }
